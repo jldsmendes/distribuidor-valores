@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distribuidor de Valores</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    header {
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      color: #1e40af;
+      margin: 0;
+    }
+    h2 {
+      color: #1e40af;
+      margin-top: 0;
+    }
+    .btn {
+      background-color: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #1e3a8a;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      margin-right: 0.5rem;
+    }
+    .status-active {
+      background-color: #dcfce7;
+      color: #166534;
+    }
+    .status-inactive {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Distribuidor de Valores</h1>
+    <div class="user-info">
+      <span class="status status-active">Conectado</span>
+      <span id="userAddress">0x1234...5678</span>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="card">
+      <h2>Status do Contrato</h2>
+      <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+        <div>
+          <strong>Status:</strong>
+          <div style="margin-top: 0.5rem;">
+            <span class="status status-inactive">Inativo</span>
+            <span class="status status-active">Operacional</span>
+          </div>
+        </div>
+        <div>
+          <strong>Tipo:</strong>
+          <p>ETH (Nativo)</p>
+        </div>
+        <div>
+          <strong>Total Alocado:</strong>
+          <p>0%</p>
+        </div>
+        <div>
+          <strong>Participantes:</strong>
+          <p>0</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="grid">
+      <div class="card">
+        <h2>Adicionar Participante</h2>
+        <form id="addParticipantForm">
+          <div style="margin-bottom: 1rem;">
+            <label for="address" style="display: block; margin-bottom: 0.5rem;">Endereço Ethereum</label>
+            <input type="text" id="address" placeholder="0x..." style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px;">
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <label for="percentage" style="display: block; margin-bottom: 0.5rem;">Percentual (base 10000)</label>
+            <input type="number" id="percentage" placeholder="2500 = 25%" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px;">
+          </div>
+          <button type="submit" class="btn">Adicionar Participante</button>
+        </form>
+      </div>
+      
+      <div class="card">
+        <h2>Painel de Administração</h2>
+        <div style="margin-bottom: 1rem;">
+          <strong>Administrador Atual:</strong>
+          <p id="adminAddress" style="font-family: monospace;">0x0000...0000</p>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <strong>Endereço do Token:</strong>
+          <p style="font-family: monospace;">ETH (Nativo)</p>
+        </div>
+        <button class="btn" style="width: 100%; margin-top: 1rem;">Resetar Confirmações</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Simular dados do usuário
+    document.getElementById('userAddress').textContent = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
+    document.getElementById('adminAddress').textContent = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
+    
+    // Manipular formulário
+    document.getElementById('addParticipantForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Funcionalidade simulada: Participante seria adicionado em um ambiente real');
+    });
+  </script>
+</body>
+</html>
