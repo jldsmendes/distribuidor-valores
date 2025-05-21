@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Distribuidor de Valores</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    h1 {
+      color: #1e40af;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #374151;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+    button {
+      background-color: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #1e3a8a;
+    }
+    .error-message {
+      color: #dc2626;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .admin-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e7eb;
+      display: none;
+    }
+    .admin-toggle {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .admin-toggle a {
+      color: #4b5563;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+    .admin-toggle a:hover {
+      text-decoration: underline;
+      color: #1e40af;
+    }
+    .password-list {
+      margin-top: 1rem;
+      background-color: #f9fafb;
+      border-radius: 4px;
+      padding: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .password-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .password-item:last-child {
+      border-bottom: none;
+    }
+    .password-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-small {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+    }
+    .btn-copy {
+      background-color: #4b5563;
+    }
+    .btn-delete {
+      background-color: #dc2626;
+    }
+    .success-message {
+      color: #059669;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Distribuidor de Valores</h1>
+    
+    <!-- Formulário de Login para Usuários -->
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="password">Senha de Acesso</label>
+        <input type="password" id="password" placeholder="Digite a senha fornecida pelo administrador" required>
+        <p class="error-message" id="errorMessage">Senha incorreta. Tente novamente.</p>
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+    
+    <div class="admin-toggle">
+      <a href="#" id="toggleAdmin">Área do Administrador</a>
+    </div>
+    
+    <!-- Seção de Administração -->
+    <div class="admin-section" id="adminSection">
+      <h2>Administração de Senhas</h2>
+      
+      <!-- Formulário para criar nova senha -->
+      <form id="createPasswordForm">
+        <div class="form-group">
+          <label for="adminPassword">Senha do Administrador</label>
+          <input type="password" id="adminPassword" placeholder="Digite a senha de administrador" required>
+        </div>
+        <div class="form-group">
+          <label for="newPassword">Nova Senha de Usuário</label>
+          <input type="text" id="newPassword" placeholder="Digite ou gere uma nova senha" required>
+          <button type="button" id="generatePassword" style="margin-top: 0.5rem; background-color: #4b5563;">Gerar Senha</button>
+        </div>
+        <div class="form-group">
+          <label for="passwordDescription">Descrição (opcional)</label>
+          <input type="text" id="passwordDescription" placeholder="Ex: Usuário da Empresa X">
+        </div>
+        <button type="submit">Criar Senha</button>
+        <p class="error-message" id="adminErrorMessage">Senha de administrador incorreta.</p>
+        <p class="success-message" id="successMessage">Senha criada com sucesso!</p>
+      </form>
+      
+      <!-- Lista de senhas criadas -->
+      <div class="password-list" id="passwordList">
+        <!-- As senhas serão adicionadas aqui dinamicamente -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Senha do administrador (em produção, isso seria verificado no servidor)
+    const ADMIN_PASSWORD = 'admin2025';
+    
+    // Armazenamento local de senhas (em produção, isso seria armazenado no servidor)
+    let userPasswords = JSON.parse(localStorage.getItem('userPasswords')) || [];
+    
+    // Elementos do DOM
+    const loginForm = document.getElementById('loginForm');
+    const toggleAdminLink = document.getElementById('toggleAdmin');
+    const adminSection = document.getElementById('adminSection');
+    const createPasswordForm = document.getElementById('createPasswordForm');
+    const generatePasswordBtn = document.getElementById('generatePassword');
+    const passwordList = document.getElementById('passwordList');
+    
+    // Alternar visibilidade da seção de administrador
+    toggleAdminLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      adminSection.style.display = adminSection.style.display === 'block' ? 'none' : 'block';
+      renderPasswordList();
+    });
+    
+    // Gerar senha aleatória
+    generatePasswordBtn.addEventListener('click', function() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let password = '';
+      for (let i = 0; i < 10; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById('newPassword').value = password;
+    });
+    
+    // Criar nova senha
+    createPasswordForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const adminPassword = document.getElementById('adminPassword').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const description = document.getElementById('passwordDescription').value || 'Usuário';
+      
+      // Verificar senha do administrador
+      if (adminPassword !== ADMIN_PASSWORD) {
+        document.getElementById('adminErrorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        return;
+      }
+      
+      // Adicionar nova senha
+      const newPasswordEntry = {
+        id: Date.now(),
+        password: newPassword,
+        description: description,
+        created: new Date().toLocaleString()
+      };
+      
+      userPasswords.push(newPasswordEntry);
+      localStorage.setItem('userPasswords', JSON.stringify(userPasswords));
+      
+      // Limpar formulário e mostrar mensagem de sucesso
+      document.getElementById('newPassword').value = '';
+      document.getElementById('passwordDescription').value = '';
+      document.getElementById('adminErrorMessage').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+      
+      // Atualizar lista de senhas
+      renderPasswordList();
+    });
+    
+    // Renderizar lista de senhas
+    function renderPasswordList() {
+      passwordList.innerHTML = '';
+      
+      if (userPasswords.length === 0) {
+        passwordList.innerHTML = '<p>Nenhuma senha criada ainda.</p>';
+        return;
+      }
+      
+      userPasswords.forEach(entry => {
+        const passwordItem = document.createElement('div');
+        passwordItem.className = 'password-item';
+        passwordItem.innerHTML = `
+          <div>
+            <strong>${entry.description}</strong><br>
+            <small>Criada em: ${entry.created}</small>
+          </div>
+          <div class="password-actions">
+            <button class="btn-small btn-copy" data-password="${entry.password}">Copiar</button>
+            <button class="btn-small btn-delete" data-id="${entry.id}">Excluir</button>
+          </div>
+        `;
+        passwordList.appendChild(passwordItem);
+      });
+      
+      // Adicionar eventos aos botões
+      document.querySelectorAll('.btn-copy').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const password = this.getAttribute('data-password');
+          navigator.clipboard.writeText(password).then(() => {
+            alert('Senha copiada para a área de transferência!');
+          });
+        });
+      });
+      
+      document.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const id = parseInt(this.getAttribute('data-id'));
+          userPasswords = userPasswords.filter(entry => entry.id !== id);
+          localStorage.setItem('userPasswords', JSON.stringify(userPasswords));
+          renderPasswordList();
+        });
+      });
+    }
+    
+    // Verificar login
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const password = document.getElementById('password').value;
+      
+      // Verificar se a senha é a do administrador
+      if (password === ADMIN_PASSWORD) {
+        sessionStorage.setItem('authenticated', 'true');
+        sessionStorage.setItem('isAdmin', 'true');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Verificar se a senha está na lista de senhas de usuário
+      const validPassword = userPasswords.some(entry => entry.password === password);
+      
+      if (validPassword) {
+        sessionStorage.setItem('authenticated', 'true');
+        sessionStorage.setItem('isAdmin', 'false');
+        window.location.href = 'index.html';
+      } else {
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('password').value = '';
+      }
+    });
+  </script>
+</body>
+</html>
