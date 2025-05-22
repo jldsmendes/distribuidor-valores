@@ -1,160 +1,332 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Distribuidor de Valores</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f7fa;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    header {
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    h1 {
-      color: #1e40af;
-      margin: 0;
-    }
-    h2 {
-      color: #1e40af;
-      margin-top: 0;
-    }
-    .btn {
-      background-color: #1e40af;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background-color: #1e3a8a;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .status {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      margin-right: 0.5rem;
-    }
-    .status-active {
-      background-color: #dcfce7;
-      color: #166534;
-    }
-    .status-inactive {
-      background-color: #fef3c7;
-      color: #92400e;
-    }
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuidor de Valores</title>
+    <script type="text/javascript" src="/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=KvQcInAmfkBDpoupau-O4g_jtNLp4BDFnupxYTScCS4lHxLqbaXricHQluOshCfac05oWxQTHq5-iWgwUkToV8fcAZIKOiBlec-AlRU2t2Mk1mxhYHS08LrLlBjGp_6WduChgOzhI2URGSbJiOT3URksdgdr-ivcXJ8H_XbOtiHxsdDNN-ElrA6-0x8pqmX8T2lzJctkMEy6CezJch0G2q2R6TQetcKWx4qoM21AR--9v-wXsHxZdGFXBU20PP1zcYoLWF6FPjGMpS0cwAoXyYs-IcDWa_mgVzgtopHXw2kmH9nYuU6mc2pnKrVfZKDWqb3-oJhxdzu52DtayLnmWzrjFt2qAvTXu_qSXD9EHRS9a0cI5Hwgjp_p1unf0MD2ejKoIzdTspvfbuzBDPnFWTKBiMhJq4Qa9SkxR42F0Wvs3sH_FqW_eOzb6b4fkApRH6lb6Hu7YYh0F1QXQWepLmBYlSDTl90S78r3fN9Aqsn0T6TxZDteBWGr-O8TdDhp5QGJf0gEmtpANOAUDtjOmDCp8g6ZhR84aKP5_QnX2Zjw5JlqC7ESzZV_dLXtLRCYLXe9J1rseWYPZSuMVzVXMKXu52M2LRzxnwamvsYoTgHFaOLM6CoCZ9qnvf_u0phXhyJ6FjaPmFumlkv7CaXH2nOB6YS98XMsj0Yn3i2R4E6E9-g4MKtuvbUr58s4xNVt3T4uPnFz21OSEdWLeJTPFvhiHDd6pnzXVviTXacTo0ukMAdUBXk8sNIwCzYmKJWpKv97uDQE29LvifJVrVSZG7b2REDWB1FP_qm4aZKxZol4sJExCBKSdFgVzFWd1AioYM2Z-MHA3-RGB3PwzMP-VLtLE_fHJ72LY4qTCSnqqbc" charset="UTF-8"></script><style>
+        /* Estilos gerais e reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Plano de fundo futurista em tons de azul */
+        body {
+            background: linear-gradient(135deg, #0a192f 0%, #112240 50%, #1a365d 100%);
+            color: #e6f1ff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Elementos decorativos futuristas */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(64, 120, 221, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(64, 120, 221, 0.1) 0%, transparent 20%),
+                linear-gradient(45deg, transparent 48%, rgba(64, 120, 221, 0.1) 50%, transparent 52%),
+                linear-gradient(135deg, transparent 48%, rgba(64, 120, 221, 0.1) 50%, transparent 52%);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+            z-index: -1;
+        }
+        
+        /* Linhas de grade futuristas */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, rgba(100, 180, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(100, 180, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+        
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background-color: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(100, 180, 255, 0.2);
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        
+        /* Título principal */
+        h1 {
+            color: #64b5f6;
+            font-weight: 600;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(100, 180, 255, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        /* Informações do usuário */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Status de conexão */
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .status-inactive {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Cartões */
+        .card {
+            background-color: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(100, 180, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 180, 255, 0.2);
+        }
+        
+        /* Títulos dos cartões */
+        h2 {
+            color: #64b5f6;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(100, 180, 255, 0.2);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Grid para cartões */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* Formulários */
+        input, button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        input {
+            background-color: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 180, 255, 0.2);
+            color: #e6f1ff;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 0 2px rgba(100, 180, 255, 0.3);
+        }
+        
+        input::placeholder {
+            color: rgba(230, 241, 255, 0.5);
+        }
+        
+        /* Botões */
+        button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        button:hover {
+            background-color: #2563eb;
+        }
+        
+        /* Efeitos de brilho */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(100, 180, 255, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .glow-1 {
+            top: -150px;
+            left: 10%;
+        }
+        
+        .glow-2 {
+            bottom: -150px;
+            right: 10%;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+        
+        /* Animações */
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Distribuidor de Valores</h1>
-    <div class="user-info">
-      <span class="status status-active">Conectado</span>
-      <span id="userAddress">0x1234...5678</span>
-    </div>
-  </header>
-  
-  <div class="container">
-    <div class="card">
-      <h2>Status do Contrato</h2>
-      <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-        <div>
-          <strong>Status:</strong>
-          <div style="margin-top: 0.5rem;">
-            <span class="status status-inactive">Inativo</span>
-            <span class="status status-active">Operacional</span>
-          </div>
+    <!-- Elementos decorativos -->
+    <div class="glow glow-1 pulse"></div>
+    <div class="glow glow-2 pulse"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Distribuidor de Valores</h1>
+            <div class="user-info">
+                <span class="status status-active">Conectado</span>
+                <span id="userAddress">0x1234...5678</span>
+            </div>
+        </header>
+        
+        <div class="card">
+            <h2>Status do Contrato</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                <div>
+                    <strong>Status:</strong>
+                    <div style="margin-top: 0.5rem;">
+                        <span class="status status-inactive">Inativo</span>
+                        <span class="status status-active">Operacional</span>
+                    </div>
+                </div>
+                <div>
+                    <strong>Tipo:</strong>
+                    <p>ETH (Nativo)</p>
+                </div>
+                <div>
+                    <strong>Total Alocado:</strong>
+                    <p>0%</p>
+                </div>
+                <div>
+                    <strong>Participantes:</strong>
+                    <p>0</p>
+                </div>
+            </div>
         </div>
-        <div>
-          <strong>Tipo:</strong>
-          <p>ETH (Nativo)</p>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>Adicionar Participante</h2>
+                <form id="addParticipantForm">
+                    <div>
+                        <label for="address" style="display: block; margin-bottom: 0.5rem;">Endereço Ethereum</label>
+                        <input type="text" id="address" placeholder="0x..." required>
+                    </div>
+                    <div>
+                        <label for="percentage" style="display: block; margin-bottom: 0.5rem;">Percentual (base 10000)</label>
+                        <input type="number" id="percentage" placeholder="2500 = 25%" required>
+                    </div>
+                    <button type="submit">Adicionar Participante</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h2>Painel de Administração</h2>
+                <div style="margin-bottom: 1rem;">
+                    <strong>Administrador Atual:</strong>
+                    <p id="adminAddress" style="font-family: monospace; margin-top: 0.5rem;">0x0000...0000</p>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <strong>Endereço do Token:</strong>
+                    <p style="font-family: monospace; margin-top: 0.5rem;">ETH (Nativo)</p>
+                </div>
+                <button style="width: 100%; margin-top: 1rem;">Resetar Confirmações</button>
+            </div>
         </div>
-        <div>
-          <strong>Total Alocado:</strong>
-          <p>0%</p>
-        </div>
-        <div>
-          <strong>Participantes:</strong>
-          <p>0</p>
-        </div>
-      </div>
     </div>
     
-    <div class="grid">
-      <div class="card">
-        <h2>Adicionar Participante</h2>
-        <form id="addParticipantForm">
-          <div style="margin-bottom: 1rem;">
-            <label for="address" style="display: block; margin-bottom: 0.5rem;">Endereço Ethereum</label>
-            <input type="text" id="address" placeholder="0x..." style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px;">
-          </div>
-          <div style="margin-bottom: 1rem;">
-            <label for="percentage" style="display: block; margin-bottom: 0.5rem;">Percentual (base 10000)</label>
-            <input type="number" id="percentage" placeholder="2500 = 25%" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px;">
-          </div>
-          <button type="submit" class="btn">Adicionar Participante</button>
-        </form>
-      </div>
-      
-      <div class="card">
-        <h2>Painel de Administração</h2>
-        <div style="margin-bottom: 1rem;">
-          <strong>Administrador Atual:</strong>
-          <p id="adminAddress" style="font-family: monospace;">0x0000...0000</p>
-        </div>
-        <div style="margin-bottom: 1rem;">
-          <strong>Endereço do Token:</strong>
-          <p style="font-family: monospace;">ETH (Nativo)</p>
-        </div>
-        <button class="btn" style="width: 100%; margin-top: 1rem;">Resetar Confirmações</button>
-      </div>
-    </div>
-  </div>
-  
-  <script>
-    // Simular dados do usuário
-    document.getElementById('userAddress').textContent = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
-    document.getElementById('adminAddress').textContent = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
-    
-    // Manipular formulário
-    document.getElementById('addParticipantForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Funcionalidade simulada: Participante seria adicionado em um ambiente real');
-    });
-  </script>
+    <script>
+        // Verificar autenticação
+        document.addEventListener('DOMContentLoaded', function() {
+            const isAuthenticated = sessionStorage.getItem('authenticated') === 'true';
+            
+            if (!isAuthenticated) {
+                // Redirecionar para a página de login se não estiver autenticado
+                window.location.href = 'login.html';
+            }
+            
+            // Simular dados do usuário
+            document.getElementById('userAddress').textContent = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
+            document.getElementById('adminAddress').textContent = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
+            
+            // Manipular formulário
+            document.getElementById('addParticipantForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Funcionalidade simulada: Participante seria adicionado em um ambiente real');
+            });
+        });
+    </script>
 </body>
 </html>
