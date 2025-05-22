@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distribuidor de Valores</title>
-    <script type="text/javascript" src="/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=KvQcInAmfkBDpoupau-O4g_jtNLp4BDFnupxYTScCS4lHxLqbaXricHQluOshCfac05oWxQTHq5-iWgwUkToV8fcAZIKOiBlec-AlRU2t2Mk1mxhYHS08LrLlBjGp_6WduChgOzhI2URGSbJiOT3URksdgdr-ivcXJ8H_XbOtiHxsdDNN-ElrA6-0x8pqmX8T2lzJctkMEy6CezJch0G2q2R6TQetcKWx4qoM21AR--9v-wXsHxZdGFXBU20PP1zcYoLWF6FPjGMpS0cwAoXyYs-IcDWa_mgVzgtopHXw2kmH9nYuU6mc2pnKrVfZKDWqb3-oJhxdzu52DtayLnmWzrjFt2qAvTXu_qSXD9EHRS9a0cI5Hwgjp_p1unf0MD2ejKoIzdTspvfbuzBDPnFWTKBiMhJq4Qa9SkxR42F0Wvs3sH_FqW_eOzb6b4fkApRH6lb6Hu7YYh0F1QXQWepLmBYlSDTl90S78r3fN9Aqsn0T6TxZDteBWGr-O8TdDhp5QGJf0gEmtpANOAUDtjOmDCp8g6ZhR84aKP5_QnX2Zjw5JlqC7ESzZV_dLXtLRCYLXe9J1rseWYPZSuMVzVXMKXu52M2LRzxnwamvsYoTgHFaOLM6CoCZ9qnvf_u0phXhyJ6FjaPmFumlkv7CaXH2nOB6YS98XMsj0Yn3i2R4E6E9-g4MKtuvbUr58s4xNVt3T4uPnFz21OSEdWLeJTPFvhiHDd6pnzXVviTXacTo0ukMAdUBXk8sNIwCzYmKJWpKv97uDQE29LvifJVrVSZG7b2REDWB1FP_qm4aZKxZol4sJExCBKSdFgVzFWd1AioYM2Z-MHA3-RGB3PwzMP-VLtLE_fHJ72LY4qTCSnqqbc" charset="UTF-8"></script><style>
+    <script type="text/javascript" src="/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=3lTr8bpKgXpFka_FP8zyZASRjbzGEE09L6e6HpWF3vQsciBy3dWCAYrgPcCnkGhyxlk71kdd17sZYZWJBUypdtdZrpj3GzjueLfwuEeV51Lp2T_JMs-QdcBpNgfvQ9J7JwQHhVjetbwixzkX8HLzsuBEOYDqo8jjR9-hIJUWDnaFDbYJ2mNBV0YwLMcoS0Q11KF-MSJFxiUIf4bdIpfjT54b1T8Zil187TlVSshq6C2fAew1bkDX5-3o6JhC6eyYojSMhNejV8gKf0p-d42Dc_PWrR-AGkhiaUb2V__u1Ybj1BmCjtE7st3Fp5WOpz6duGhodGIh1gqG6dW0k5x9zJFvFWZcFfIbj9SsoiKiGKU57zDQPV7odQk3s-xteDp3WoDpYHw-hFQVbxkaulro1xo3mjqWjdm3QYMIizVIbP67v9OuQEOUSIIc1Sm91pzSRp0DY9nhgpbPI1RSagffjHgapLv1uf9eCnVaP6qjekhc8cPd3R_P0a6Dt1U4mhhY2XpM_p0lzNdcPY1FAvRdPK7vBo1BXzm5a7B7ZLR89qElXSn6iN3zB76--m62ed-fEeu8q3qFgVEdYFaBB_RRI5L3FWD5E76zV0UC23EvO5jY8_TqwTNIQatyhAh65VjIMIBFEqjeNgd3xNXCiCAvXCs8lSlmubh8MNAtHgJL0E6X_SuG5lWTgpkusDMaJyCEnN5DMVgYtye-4yUXQZ9GjJCr4HsBfYjam7iOdXT4ccvvLz_JveuBwbGSQyz6SeJapyI2HtygT1pF8kB69m_sp4BJoj3jzTQBmpPvuIfnX5-JcaMhNmDxKkjQoXO5IpqOvUs_UO5qU5S_sT0ZRfJ2zwbVbTcQ4ZIWsUah23lPxmA" charset="UTF-8"></script><style>
         /* Estilos gerais e reset */
         * {
             margin: 0;
@@ -191,6 +191,32 @@
             background-color: #2563eb;
         }
         
+        /* Botão de logout */
+        .logout-btn {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: none;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(239, 68, 68, 0.3);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+        
+        .logout-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
         /* Efeitos de brilho */
         .glow {
             position: absolute;
@@ -223,6 +249,11 @@
                 gap: 1rem;
                 text-align: center;
             }
+            
+            .user-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
         
         /* Animações */
@@ -248,6 +279,14 @@
             <div class="user-info">
                 <span class="status status-active">Conectado</span>
                 <span id="userAddress">0x1234...5678</span>
+                <button id="logoutBtn" class="logout-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Sair
+                </button>
             </div>
         </header>
         
@@ -325,6 +364,16 @@
             document.getElementById('addParticipantForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Funcionalidade simulada: Participante seria adicionado em um ambiente real');
+            });
+            
+            // Funcionalidade de logout
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                // Limpar dados de autenticação
+                sessionStorage.removeItem('authenticated');
+                sessionStorage.removeItem('isAdmin');
+                
+                // Redirecionar para a página de login
+                window.location.href = 'login.html';
             });
         });
     </script>
